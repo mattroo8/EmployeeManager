@@ -13,6 +13,7 @@
 		28361D46232EBAB8007F6E17 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 28361D45232EBAB8007F6E17 /* Role.m */; };
 		28361D4923301744007F6E17 /* Employee+TestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 28361D4823301744007F6E17 /* Employee+TestData.m */; };
 		28361D4C23316004007F6E17 /* EmployeeListSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 28361D4B23316004007F6E17 /* EmployeeListSection.m */; };
+		28361D5023316976007F6E17 /* profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 28361D4F23316975007F6E17 /* profile.jpg */; };
 		285251DE232E985D00BD91FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 285251DD232E985D00BD91FC /* AppDelegate.m */; };
 		285251E6232E986000BD91FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 285251E5232E986000BD91FC /* Assets.xcassets */; };
 		285251E9232E986000BD91FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 285251E7232E986000BD91FC /* LaunchScreen.storyboard */; };
@@ -52,6 +53,7 @@
 		28361D4823301744007F6E17 /* Employee+TestData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Employee+TestData.m"; sourceTree = "<group>"; };
 		28361D4A23316004007F6E17 /* EmployeeListSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmployeeListSection.h; sourceTree = "<group>"; };
 		28361D4B23316004007F6E17 /* EmployeeListSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmployeeListSection.m; sourceTree = "<group>"; };
+		28361D4F23316975007F6E17 /* profile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profile.jpg; sourceTree = "<group>"; };
 		285251D9232E985D00BD91FC /* EmployeeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		285251DC232E985D00BD91FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		285251DD232E985D00BD91FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -110,6 +112,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		28361D4E23316975007F6E17 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				28361D4F23316975007F6E17 /* profile.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		285251D0232E985C00BD91FC = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +143,7 @@
 		285251DB232E985D00BD91FC /* EmployeeManager */ = {
 			isa = PBXGroup;
 			children = (
+				28361D4E23316975007F6E17 /* Resources */,
 				28361D35232E9E3C007F6E17 /* Models */,
 				28525214232E98ED00BD91FC /* Views */,
 				28525213232E98E100BD91FC /* ViewControllers */,
@@ -290,6 +301,7 @@
 				285251E9232E986000BD91FC /* LaunchScreen.storyboard in Resources */,
 				28525212232E98D900BD91FC /* EmployeeListViewController.xib in Resources */,
 				28361D3D232EA156007F6E17 /* EmployeeDetailViewController.xib in Resources */,
+				28361D5023316976007F6E17 /* profile.jpg in Resources */,
 				285251E6232E986000BD91FC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
