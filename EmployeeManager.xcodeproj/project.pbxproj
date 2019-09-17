@@ -12,6 +12,7 @@
 		28361D3D232EA156007F6E17 /* EmployeeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28361D3B232EA156007F6E17 /* EmployeeDetailViewController.xib */; };
 		28361D46232EBAB8007F6E17 /* Role.m in Sources */ = {isa = PBXBuildFile; fileRef = 28361D45232EBAB8007F6E17 /* Role.m */; };
 		28361D4923301744007F6E17 /* Employee+TestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 28361D4823301744007F6E17 /* Employee+TestData.m */; };
+		28361D4C23316004007F6E17 /* EmployeeListSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 28361D4B23316004007F6E17 /* EmployeeListSection.m */; };
 		285251DE232E985D00BD91FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 285251DD232E985D00BD91FC /* AppDelegate.m */; };
 		285251E6232E986000BD91FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 285251E5232E986000BD91FC /* Assets.xcassets */; };
 		285251E9232E986000BD91FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 285251E7232E986000BD91FC /* LaunchScreen.storyboard */; };
@@ -49,6 +50,8 @@
 		28361D45232EBAB8007F6E17 /* Role.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Role.m; sourceTree = "<group>"; };
 		28361D4723301744007F6E17 /* Employee+TestData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Employee+TestData.h"; sourceTree = "<group>"; };
 		28361D4823301744007F6E17 /* Employee+TestData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Employee+TestData.m"; sourceTree = "<group>"; };
+		28361D4A23316004007F6E17 /* EmployeeListSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmployeeListSection.h; sourceTree = "<group>"; };
+		28361D4B23316004007F6E17 /* EmployeeListSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmployeeListSection.m; sourceTree = "<group>"; };
 		285251D9232E985D00BD91FC /* EmployeeManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmployeeManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		285251DC232E985D00BD91FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		285251DD232E985D00BD91FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				28361D4823301744007F6E17 /* Employee+TestData.m */,
 				28361D36232E9E62007F6E17 /* Employee.h */,
 				28361D37232E9E62007F6E17 /* Employee.m */,
+				28361D4A23316004007F6E17 /* EmployeeListSection.h */,
+				28361D4B23316004007F6E17 /* EmployeeListSection.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28525211232E98D900BD91FC /* EmployeeListViewController.m in Sources */,
+				28361D4C23316004007F6E17 /* EmployeeListSection.m in Sources */,
 				28361D3C232EA156007F6E17 /* EmployeeDetailViewController.m in Sources */,
 				28361D4923301744007F6E17 /* Employee+TestData.m in Sources */,
 				28361D46232EBAB8007F6E17 /* Role.m in Sources */,

@@ -10,6 +10,6 @@
 
 @interface Employee (TestData)
 
-+(NSArray *)testEmployees;
++(NSMutableArray *)testEmployees;
 
 @end

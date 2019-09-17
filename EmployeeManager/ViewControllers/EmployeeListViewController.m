@@ -10,11 +10,12 @@
 #import "Employee.h"
 #import "Employee+TestData.h"
 #import "EmployeeDetailViewController.h"
+#import "EmployeeListSection.h"
 
 @interface EmployeeListViewController () <UITableViewDelegate, UITableViewDataSource, EmployeeDetailViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray<Employee *> *employees;
+@property (strong, nonatomic) NSMutableArray<EmployeeListSection *> *employeeSections;
 
 @end
 
@@ -25,7 +26,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.title = @"Employees";
-    self.employees = [[NSMutableArray alloc] initWithArray:[Employee testEmployees]];
+    self.employeeSections = [Employee testEmployees];
     [self setupNavBar];
 }
 
@@ -58,7 +59,8 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    Employee *employee = [self.employees objectAtIndex:indexPath.row];
+    EmployeeListSection *section = [self.employeeSections objectAtIndex:indexPath.section];
+    Employee *employee = [section.employees objectAtIndex:indexPath.row];
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
@@ -71,32 +73,72 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.employees.count;
+    EmployeeListSection *employeeSection = [self.employeeSections objectAtIndex:section];
+    return employeeSection.employees.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.employeeSections.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    EmployeeListSection *employeeSection = [self.employeeSections objectAtIndex:section];
+    return [RoleUtils stringFromRole:employeeSection.role];
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    Employee *employee = [self.employees objectAtIndex:indexPath.row];
+    EmployeeListSection *section = [self.employeeSections objectAtIndex:indexPath.section];
+    Employee *employee = [section.employees objectAtIndex:indexPath.row];
     EmployeeDetailViewController *employeeDetailViewController = [[EmployeeDetailViewController alloc] initWithDelegate:self andEmployee:employee];
     [self.navigationController pushViewController:employeeDetailViewController animated:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        EmployeeListSection *employeeSection = [self.employeeSections objectAtIndex:indexPath.section];
+        [tableView beginUpdates];
+        [employeeSection.employees removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        if (employeeSection.employees.count == 0) {
+            [self.employeeSections removeObjectAtIndex:indexPath.section];
+            [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        [tableView endUpdates];
+    }
 }
 
 #pragma mark EmployeeDetailDelegate methods
 
 -(void)didSaveEmployee:(Employee *)employee {
     BOOL employeeExists = NO;
-    for (int i = 0; i < self.employees.count; i++) {
-        Employee *employeeInlist = [self.employees objectAtIndex:i];
-        if(employeeInlist.id == employee.id) {
-            employeeInlist.firstName = employee.firstName;
-            employeeInlist.lastName = employee.lastName;
-            employeeInlist.dob = employee.dob;
-            employeeInlist.role = employee.role;
-            employeeExists = true;
-            break;
+    for (EmployeeListSection *section in self.employeeSections){
+        for (Employee *employeeInlist in section.employees) {
+            if(employeeInlist.id == employee.id) {
+                employeeInlist.firstName = employee.firstName;
+                employeeInlist.lastName = employee.lastName;
+                employeeInlist.dob = employee.dob;
+                employeeInlist.role = employee.role;
+                employeeExists = true;
+                break;
+            }
         }
     }
+    BOOL createSection = true;
     if(!employeeExists){
-        [self.employees addObject:employee];
+        for (EmployeeListSection *section in self.employeeSections) {
+            if(section.role == employee.role){
+                createSection = false;
+                [section.employees addObject:employee];
+            }
+        }
+    }
+    if(createSection){
+        EmployeeListSection *newSection = [[EmployeeListSection alloc] initWithRole:employee.role andEmployees:[[NSMutableArray alloc] initWithArray:@[employee]]];
+        [self.employeeSections addObject:newSection];
     }
     [self.tableView reloadData];
 }

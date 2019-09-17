@@ -7,10 +7,11 @@
 //
 
 #import "Employee+TestData.h"
+#import "EmployeeListSection.h"
 
 @implementation Employee (TestData)
 
-+(NSArray *)testEmployees {
++(NSMutableArray *)testEmployees {
     
     
     Employee *employee1 = [[Employee alloc] initWithFirstName:@"Matt"
@@ -42,7 +43,14 @@
                                                       andDob:[NSDate new]
                                                      andRole:SoftwareEngineer
                                                         andId:[[NSUUID UUID] UUIDString]];
-    return @[employee1, employee2, employee3, employee4, employee5];
+    NSMutableArray *sections = [NSMutableArray new];
+    [sections addObject:[[EmployeeListSection alloc] initWithRole:TeamLead
+                                                     andEmployees:[[NSMutableArray alloc] initWithArray:@[employee1, employee2]]]];
+    [sections addObject:[[EmployeeListSection alloc] initWithRole:SoftwareEngineer
+                                                     andEmployees:[[NSMutableArray alloc] initWithArray:@[employee3, employee5]]]];
+    [sections addObject:[[EmployeeListSection alloc] initWithRole:QA
+                                                     andEmployees:[[NSMutableArray alloc] initWithArray:@[employee4]]]];
+    return sections;
 }
 
 @end
